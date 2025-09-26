@@ -1,0 +1,26 @@
+#include <stdio.h>
+int main(){
+	int a, b, c, x=0;
+	scanf("%d %d %d", &a, &b, &c);
+	for (int i = a;i <= b; i++){
+		if (c%i == 0){
+			x++;
+		}
+	}
+	printf("%d\n", x);
+	return 0;
+}
+
+
+/*
+编写一个程序，读取三个整数a，b 和c，并输出 a 和 b 之间（包括ab）的c 因数的个数 .
+
+输入
+三个整数a， b和c在一行中，用一个空格分隔 .
+
+输出
+在一行中打印因数的数量
+数据范围
+1 ≤ a, b, c ≤ 10000
+a ≤ b
+*/
