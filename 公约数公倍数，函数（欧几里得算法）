@@ -1,0 +1,21 @@
+#include <stdio.h>
+int yin(int a,int b);
+int yue(int a,int b);
+int main(){
+	int n,m;
+	scanf("%d %d", &n,&m);
+	printf("%d %d", yue(n,m),yin(n,m));
+	return 0;
+}
+int yue(int a,int b){
+
+    while (b!=0){
+    	int t=b;
+    	b=a%b;
+		a=t;
+	}
+	return a;
+}
+int yin(int a,int b){
+	return (a*b)/yue(a,b);
+}
