@@ -1,0 +1,21 @@
+#include <stdio.h>
+int runnian(int year){
+	return((year%4==0&&year%100!=0)||year%400==0);
+}
+int main(){
+	int y,n;
+	while(scanf("%d %d",&y,&n)!=EOF){
+		int m[]={31,28,31,30,31,30,31,31,30,31,30,31};
+		if(runnian(y)){
+			m[1]=29;
+		}
+		int month=0;
+		int day=n;
+		while (day>m[month]){
+			day-=m[month];
+			month++;
+		}
+		printf("%04d-%02d-%02d\n",y,month+1,day);
+	}
+	return 0;
+}
