@@ -1,0 +1,35 @@
+#include <stdio.h>
+#include <math.h>
+int main(){
+	int N;
+	char s;
+	while(scanf("%d %c",&N,&s)!=EOF){
+		int row=(int)sqrt((N+1)/2.0);
+		int num_of_char=2*row*row-1;
+		int remain=N-num_of_char;
+		for (int i=row;i>0;i--){
+			int stars=2*i-1;
+			int spaces=row-i;
+			for (int j=0;j<spaces;j++){
+				printf(" ");
+			}
+			for (int j=0;j<stars;j++){
+				printf("%c",s);
+			}
+			printf("\n");
+		}
+		for (int k=2;k<=row;k++){
+			int stars2=2*k-1;
+			int spaces2=row-k;
+			for (int m=0;m<spaces2;m++){
+				printf(" ");
+			}
+			for (int m=0;m<stars2;m++){
+				printf("%c",s);
+			}
+			printf("\n");
+		}
+		printf("%d\n",remain);
+	}
+	return 0;
+}
