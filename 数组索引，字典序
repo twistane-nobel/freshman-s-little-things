@@ -1,0 +1,22 @@
+#include <stdio.h>
+#include<string.h>
+int main(){
+    char str[3][51];
+    int index[3]={0,1,2};
+    for (int i=0;i<3;i++){
+    	scanf("%s",str[i]);
+	}
+	for (int i=0;i<2;i++){
+		for(int j=0;j<2-i;j++){
+			if(strcmp(str[index[j]],str[index[j+1]])>0){
+				int t=index[j];
+				index[j]=index[j+1];
+				index[j+1]=t;
+			}
+		}
+	}
+	for (int i=0;i<3;i++){
+		printf("%s\n",str[index[i]]);
+	}
+	return 0;
+}
