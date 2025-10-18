@@ -1,0 +1,29 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+void guessnum(int n,int guess,int i){
+	i=0;
+	int lower=1,upper=100;
+	do{
+		scanf("%d",&guess);
+		i++;
+		if (guess<n){
+			lower=guess;
+			printf("It's between %d-%d!What's the number? %d ",lower,upper,i);
+		}else if(guess>n){
+			upper=guess;
+			printf("It's between %d-%d!What's the number? %d ",lower,upper,i);
+		}else {
+			printf("Congratulations! %d ",i);
+	    }
+    }while (guess!=n);
+}
+int main(){
+	srand(time(NULL));
+	int n=rand()%100+1;
+	int guess,i=0;
+    printf("Let's begin!What's the number?");
+    guessnum(n,guess,i);
+    
+    return 0;
+}
