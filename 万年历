@@ -1,0 +1,124 @@
+#include <stdio.h>
+int runnian(int year);
+int thenumofday(int year,int month);
+int iswhichday(int year,int month);
+void monthc(int year,int month);
+void yearc(int year);
+void dayc(int year,int month,int day);
+int main(){ 
+	int choice;
+	int year=0,month=0,day=0;
+	while(1){
+		printf("           Menu        \n");
+	    printf("1.Show a year's calendar\n");
+	    printf("2.Show a month's calendar\n");
+	    printf("3.Show the day of the date\n");
+	    printf("4.Quit the system\n");
+	    printf("Please input your choice:");
+		scanf("%d",&choice);
+		switch (choice){
+	        case 1:
+	    	    yearc(year);
+	    	    break;
+	        case 2:
+	    	    printf("Please input the year, month:\n");
+	            scanf("%d %d",&year,&month);
+	    	    monthc(year,month);
+	    	    break;
+	        case 3:
+	    	    printf("Please input the year, month, day:");
+	            scanf("%d %d %d",&year,&month,&day);
+	    	    dayc(year,month,day);
+	    	    break;
+	        case 4:
+	    	    return 0;
+	    }
+	}
+	
+
+	return 0;	
+}
+int runnian(int year){
+	return((year%4==0&&year%100!=0)||year%400==0);
+}
+
+int thenumofday(int year,int month){
+	int days;
+	switch(month){
+		case 1:case 3:case 5:case 7:case 8:case 10:case 12:
+			days=31;
+			break;
+		case 4:case 6:case 9:case 11:
+			days=30;
+			break;
+		case 2:
+			days=runnian(year)?29:28;
+			break;
+	}
+	return days;
+}
+
+int iswhichday(int year,int month){
+	if (month==1||month==2){
+		month+=12;
+		year--;
+	}
+	int y=year%100;
+	int c=year/100;
+	if (month==1||month==2){
+		month=month+12;
+	}
+	int w=(1+13*(month+1)/5+y+y/4+c/4+5*c)%7;
+	return (w+5)%7+1;
+}
+
+void monthc(int year,int month){
+	const char *monthnames[]={"January","February","March","April","May","June","July","August","September","October","November","December"};
+	printf("\n%s              %d",monthnames[month-1],year);
+	printf("\nSun Mon Tue Wed Thu Fri Sat\n");
+	int d=thenumofday(year,month);
+	int firstday=iswhichday(year,month);
+	if (firstday!=7){
+		for (int i=0;i<firstday;i++){
+		    printf("    ");
+	    }
+	}
+	for (int day=1;day<=d;day++){
+		printf("%3d ",day);
+		if ((firstday+day)%7==0){
+		    printf("\n");
+	    }
+	}
+	printf("\n");	
+}
+
+void yearc(int year){
+	printf("Please input the year:");
+	scanf("%d",&year);
+	for (int month=1;month<=12;month++){
+		monthc(year,month);
+		printf("-------------------------------\n");
+	}
+}
+
+void dayc(int year,int month,int day){
+	const char *daynames[]={"Monday","Tuesday","Wednesday","Thurthday","Friday","Saturday","Sunday"};
+	if (month==1||month==2){
+		month==month+12;
+		year=year-1;
+	}
+	int y=year%100;
+	int c=year/100;
+	int w=(day+13*(month+1)/5+y+y/4+c/4-2*c)%7;
+	w=w-2;
+	if (month==1){
+		w=w-4;
+	}
+	if (month==2){
+		w=w-3;
+	}
+	if (w<0){
+		w+=7;
+	}
+	printf("\nThis is %s.\n",daynames[w]);
+}
