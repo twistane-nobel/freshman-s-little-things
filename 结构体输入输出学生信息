@@ -1,0 +1,24 @@
+#include <stdio.h>
+struct student{
+	char id[20];
+	char name[20];
+	int score1,score2,score3;
+};
+void input(struct student *stu){
+	scanf("%s %s %d %d %d",stu->id,stu->name,&stu->score1,&stu->score2,&stu->score3);
+}
+void output(struct student stu){
+	printf("%s,%s,%d,%d,%d\n",stu.id,stu.name,stu.score1,stu.score2,stu.score3);
+}
+int main(){
+	int N;
+	scanf("%d",&N);
+	struct student students[100];
+	for(int i=0;i<N;i++){
+		input(&students[i]);
+	}
+	for(int i=0;i<N;i++){
+		output(students[i]);
+	}
+    return 0;
+}
